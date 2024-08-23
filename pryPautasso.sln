@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pryPautasso", "pryPautasso\pryPautasso.csproj", "{B8115B1A-DCBD-4DA1-8C7C-ADBF900B4D3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8115B1A-DCBD-4DA1-8C7C-ADBF900B4D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8115B1A-DCBD-4DA1-8C7C-ADBF900B4D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8115B1A-DCBD-4DA1-8C7C-ADBF900B4D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8115B1A-DCBD-4DA1-8C7C-ADBF900B4D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F254F9F9-1727-471A-9E0E-66FE09DD61AD}
+	EndGlobalSection
+EndGlobal
