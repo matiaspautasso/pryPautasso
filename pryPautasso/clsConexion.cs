@@ -96,7 +96,7 @@ namespace pryPautasso
                 conexion.Close();
             }
         }
-        public void Eliminar(string NOMBRE, string descripcion)
+        public void Eliminar(string NOMBRE, string descripcion) // 
         {
             try
             {
