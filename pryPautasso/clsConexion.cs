@@ -96,6 +96,28 @@ namespace pryPautasso
                 conexion.Close();
             }
         }
+        public void Eliminar(string NOMBRE, string descripcion)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = $"DELETE FROM ARTICULOS WHERE Nombre = '{NOMBRE}' " +
+                    $"AND Descripcion = '{descripcion}'";
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
     }
 }

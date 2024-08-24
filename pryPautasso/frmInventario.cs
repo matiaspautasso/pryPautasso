@@ -37,5 +37,13 @@ namespace pryPautasso
             clsConexion.MostrarGrilla(dgvMostrar);
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string descripcion = txtDescripcion.Text;
+            clsConexion.Eliminar(nombre,descripcion);
+            clsConexion.MostrarGrilla(dgvMostrar);
+        }
     }
 }
