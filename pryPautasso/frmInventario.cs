@@ -24,8 +24,17 @@ namespace pryPautasso
            // clsConexion.VerificarConexion();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //btnInsertar
         {
+           
+            string nombre = txtNombre.Text;
+            string descripcion = txtDescripcion.Text;
+            string categoria = txtCategoria.Text;
+            decimal precio = decimal.Parse(txtPrecio.Text);
+            int stock = int.Parse(txtStock.Text);
+
+            clsConexion.insertar(nombre, descripcion, precio, stock, categoria);
+            clsConexion.MostrarGrilla(dgvMostrar);
 
         }
     }

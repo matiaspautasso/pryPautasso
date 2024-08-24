@@ -20,7 +20,7 @@ namespace pryPautasso
         string cadena;
         public clsConexion()
         {
-            cadena = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=E:\\Escritorio\\pryPautasso\\pryPautasso\\bin\\Debug\\DBAStore.mdb";
+            cadena = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=./DBAStore.accdb";
         }
         public bool VerificarConexion()
         {
@@ -42,8 +42,10 @@ namespace pryPautasso
             }
             return resultado;   
         }
+
         public void insertar(string nombre, string descripcion, 
-            string precio, string stock, string categoria)
+            decimal precio, int stock, string categoria)
+
         {
             try
             {
@@ -51,13 +53,15 @@ namespace pryPautasso
                 comando=new OleDbCommand();
                 comando.Connection = conexion;  
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = $"INSERT INTO ARTICULOS(Nombre,Descripcion,Precio," +
-                    $"Stock,Categoria) VALUES('{nombre}'," +
-                    $"'{descripcion}'," +
-                    $"'{precio}'" +
-                    $"'{stock}'" +
-                    $"'{categoria}',)";
-                conexion.Open() ;
+                comando.CommandText = "INSERT INTO ARTICULOS (Nombre, Descripcion, Precio, Stock, Categoria) " +
+                             "VALUES (@nombre, @descripcion, @precio, @stock, @categoria)";
+                comando.Parameters.AddWithValue("@nombre", nombre);
+                comando.Parameters.AddWithValue("@descripcion", descripcion);
+                comando.Parameters.AddWithValue("@precio", precio);
+                comando.Parameters.AddWithValue("@stock", stock);
+                comando.Parameters.AddWithValue("@categoria", categoria);
+
+                conexion.Open();
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex) 
@@ -66,6 +70,30 @@ namespace pryPautasso
             }finally 
             {
              conexion.Close() ;
+            }
+        }
+
+        public void MostrarGrilla(DataGridView grilla)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = "SELECT * FROM ARTICULOS";
+                DataTable TABLA = new DataTable();
+                dataAdapter = new OleDbDataAdapter(comando);
+                dataAdapter.Fill(TABLA);
+                grilla.DataSource = TABLA;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
             }
         }
 
