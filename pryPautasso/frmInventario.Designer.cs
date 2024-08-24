@@ -42,6 +42,8 @@
             this.btnInsertar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,12 +171,32 @@
             this.btnActualizar.TabIndex = 13;
             this.btnActualizar.Text = "actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(112, 416);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(99, 20);
+            this.txtID.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(7, 416);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 20);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "ID";
             // 
             // frmInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 516);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnInsertar);
@@ -214,6 +236,8 @@
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Label label6;
     }
 }
 

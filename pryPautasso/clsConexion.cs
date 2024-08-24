@@ -119,5 +119,34 @@ namespace pryPautasso
             }
         }
 
+        public void Actualizar(string nombre, string descripcion, decimal precio, int stock, string categoria, int id)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = $"UPDATE ARTICULOS SET Nombre='{nombre}', " +
+                    $"Descripcion='{descripcion}'," +
+                    $" Precio={precio}, " +
+                    $"Stock={stock}, " +
+                    $"Categoria='{categoria}' " +
+                    $"WHERE IDproducto = {id}";
+
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
     }
 }

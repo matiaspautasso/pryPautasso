@@ -45,5 +45,17 @@ namespace pryPautasso
             clsConexion.Eliminar(nombre,descripcion);
             clsConexion.MostrarGrilla(dgvMostrar);
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string descripcion = txtDescripcion.Text;
+            string categoria = txtCategoria.Text;
+            decimal precio = decimal.Parse(txtPrecio.Text);
+            int stock = int.Parse(txtStock.Text);
+            int id = int.Parse(txtID.Text);
+            clsConexion.Actualizar(nombre,descripcion,precio,stock,categoria,id);
+            clsConexion.MostrarGrilla(dgvMostrar);
+        }
     }
 }
