@@ -20,7 +20,7 @@ namespace pryPautasso
         string cadena;
         public clsConexion()
         {
-            cadena = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=./DBAStore.accdb";
+            cadena = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Alumno\\Source\\Repos\\pryPautasso\\pryPautasso\\carpeta1\\DBAStore.accdb";
         }
         public bool VerificarConexion()
         {
@@ -49,25 +49,28 @@ namespace pryPautasso
         {
             try
             {
+                // Crear la conexión
                 conexion = new OleDbConnection(cadena);
-                comando=new OleDbCommand();
-                comando.Connection = conexion;  
-                comando.CommandType = CommandType.Text;
-                comando.CommandText = "INSERT INTO ARTICULOS (Nombre, Descripcion, Precio, Stock, Categoria) " +
-                             "VALUES (@nombre, @descripcion, @precio, @stock, @categoria)";
-                comando.Parameters.AddWithValue("@nombre", nombre);
-                comando.Parameters.AddWithValue("@descripcion", descripcion);
-                comando.Parameters.AddWithValue("@precio", precio);
-                comando.Parameters.AddWithValue("@stock", stock);
-                comando.Parameters.AddWithValue("@categoria", categoria);
 
+                // Crear el comando
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+
+                // Construir la consulta SQL concatenando las variables directamente
+                comando.CommandText = $"INSERT INTO ARTICULOS (Nombre, Descripcion, Precio, Stock, Categoria) " +
+                                      $"VALUES ('{nombre}', '{descripcion}', {precio}, {stock}, '{categoria}')";
+
+                // Abrir la conexión y ejecutar el comando
                 conexion.Open();
                 comando.ExecuteNonQuery();
             }
             catch (Exception ex) 
             {
-            MessageBox.Show (ex.Message);   
-            }finally 
+                // Manejar excepciones
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally 
             {
              conexion.Close() ;
             }
