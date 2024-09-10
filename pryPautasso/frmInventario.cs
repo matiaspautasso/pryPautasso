@@ -26,14 +26,15 @@ namespace pryPautasso
 
         private void button1_Click(object sender, EventArgs e) //btnInsertar
         {
-           
+            //btn insertar
+            int ID=int.Parse(txtID.Text);
             string nombre = txtNombre.Text;
             string descripcion = txtDescripcion.Text;
             string categoria = txtCategoria.Text;
             decimal precio = decimal.Parse(txtPrecio.Text);
             int stock = int.Parse(txtStock.Text);
 
-            clsConexion.insertar(nombre, descripcion, precio, stock, categoria);
+            clsConexion.insertar(ID,nombre, descripcion, precio, stock, categoria);
             clsConexion.MostrarGrilla(dgvMostrar);
 
         }

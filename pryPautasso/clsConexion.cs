@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 
 
@@ -43,7 +44,7 @@ namespace pryPautasso
             return resultado;   
         }
 
-        public void insertar(string nombre, string descripcion, 
+        public void insertar(int ID,string nombre, string descripcion, 
             decimal precio, int stock, string categoria)
 
         {
@@ -53,18 +54,21 @@ namespace pryPautasso
                 comando=new OleDbCommand();
                 comando.Connection = conexion;  
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "INSERT INTO ARTICULOS (Nombre, Descripcion, Precio, Stock, Categoria) " +
-                             "VALUES (@nombre, @descripcion, @precio, @stock, @categoria)";
+                comando.CommandText = "INSERT INTO ARTICULOS (IDproducto,Nombre, Descripcion, Precio, Stock, Categoria) " +
+                             "VALUES (@ID,@nombre, @descripcion, @precio, @stock, @categoria)";
+                comando.Parameters.AddWithValue("@ID", ID);
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@descripcion", descripcion);
                 comando.Parameters.AddWithValue("@precio", precio);
                 comando.Parameters.AddWithValue("@stock", stock);
                 comando.Parameters.AddWithValue("@categoria", categoria);
-
+            //recordar !!! ===>  ID: Es el nombre del parámetro en la consulta SQL.
+            //ID: Es el valor que se asignará al parámetro @ID en la consulta.
+            //        Esta variable contiene el valor que se quiere insertar en la columna IDproducto de la tabla.
                 conexion.Open();
                 comando.ExecuteNonQuery();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
             MessageBox.Show (ex.Message);   
             }finally 
