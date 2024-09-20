@@ -144,7 +144,7 @@
             // btnInsertar
             // 
             this.btnInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertar.Location = new System.Drawing.Point(292, 388);
+            this.btnInsertar.Location = new System.Drawing.Point(292, 370);
             this.btnInsertar.Name = "btnInsertar";
             this.btnInsertar.Size = new System.Drawing.Size(123, 48);
             this.btnInsertar.TabIndex = 11;
@@ -155,7 +155,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(504, 388);
+            this.btnEliminar.Location = new System.Drawing.Point(492, 368);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(123, 48);
             this.btnEliminar.TabIndex = 12;
@@ -166,7 +166,7 @@
             // btnActualizar
             // 
             this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizar.Location = new System.Drawing.Point(728, 388);
+            this.btnActualizar.Location = new System.Drawing.Point(715, 370);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(123, 48);
             this.btnActualizar.TabIndex = 13;
