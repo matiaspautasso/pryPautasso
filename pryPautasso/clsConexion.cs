@@ -100,7 +100,7 @@ namespace pryPautasso
                 conexion.Close();
             }
         }
-        public void Eliminar(string NOMBRE, string descripcion) // 
+        public void Eliminar(int ID)    // 
         {
             try
             {
@@ -108,8 +108,8 @@ namespace pryPautasso
                 comando = new OleDbCommand();
                 comando.Connection = conexion;
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = $"DELETE FROM ARTICULOS WHERE Nombre = '{NOMBRE}' " +
-                    $"AND Descripcion = '{descripcion}'";
+                comando.CommandText = "DELETE FROM ARTICULOS WHERE IDproducto = @ID";
+                comando.Parameters.AddWithValue("@ID", ID);
                 conexion.Open();
                 comando.ExecuteNonQuery();
             }
