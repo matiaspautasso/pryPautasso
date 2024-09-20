@@ -27,7 +27,7 @@ namespace pryPautasso
 
         private void button1_Click(object sender, EventArgs e) //btnInsertar
         {
-            //btn insertar
+            //btn insertar este boton no sirve corregir
             int ID=int.Parse(txtID.Text);
             string nombre = txtNombre.Text;
             string descripcion = txtDescripcion.Text;
