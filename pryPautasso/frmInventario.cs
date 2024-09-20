@@ -20,7 +20,8 @@ namespace pryPautasso
         clsConexion clsConexion = new clsConexion();
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            sadfas sadfas = new sadfas();
+            sadfas.Show();
            // clsConexion.VerificarConexion();
         }
 
@@ -48,8 +49,8 @@ namespace pryPautasso
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            string id =txtID.Text;
-            clsConexion.Eliminar(id);
+            int ID =int.Parse(txtID.Text);
+            clsConexion.Eliminar(ID);
             clsConexion.MostrarGrilla(dgvMostrar);
         }
 
