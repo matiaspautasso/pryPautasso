@@ -30,5 +30,17 @@ namespace pryPautasso
             LvMostrar.Columns.Add("Categoria", 120);
             clsConexion.MostrarListView(LvMostrar);
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            clsConexion.EliminarRegLv(LvMostrar);
+            clsConexion.MostrarListView(LvMostrar);    
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();   
+        }
     }
 }

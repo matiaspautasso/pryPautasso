@@ -21,7 +21,7 @@ namespace pryPautasso
         string cadena;
         public clsConexion()
         {
-            cadena = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=./DBAStore.accdb";
+            cadena = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\matia\OneDrive\Escritorio\facultad\2024\4to sem\lab 3\tp1Lab3\pryPautasso\pryPautasso\Datos\BdPr1.accdb";
         }
         public bool VerificarConexion()
         {
@@ -54,7 +54,7 @@ namespace pryPautasso
                 comando=new OleDbCommand();
                 comando.Connection = conexion;  
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "INSERT INTO ARTICULOS (Nombre, Descripcion, Precio, Stock, Categoria) " +
+                comando.CommandText = "INSERT INTO Hoja 1  (Nombre, Descripción, Precio, Stock, Categoría) " +
                              "VALUES (@nombre, @descripcion, @precio, @stock, @categoria)";
             
                 comando.Parameters.AddWithValue("@nombre", nombre);
@@ -85,7 +85,7 @@ namespace pryPautasso
                 comando = new OleDbCommand();
                 comando.Connection = conexion;
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT * FROM ARTICULOS";
+                comando.CommandText = "SELECT * FROM Hoja 1";
                 DataTable TABLA = new DataTable();
                 dataAdapter = new OleDbDataAdapter(comando);
                 dataAdapter.Fill(TABLA);
@@ -113,7 +113,7 @@ namespace pryPautasso
                 conexion.Open(); // Abrir la conexión
 
                 // Crear el comando para la consulta SQL
-                comando = new OleDbCommand("SELECT * FROM ARTICULOS", conexion);
+                comando = new OleDbCommand("SELECT * FROM Hoja 1", conexion);
 
                 // Crear un DataTable para almacenar los datos
                 DataTable TABLA = new DataTable();
@@ -130,7 +130,7 @@ namespace pryPautasso
                 {
                     // Crear un ListViewItem con la primera columna (IdProducto)
                     ListViewItem item = new ListViewItem(fila["IdProducto"].ToString());
-
+                     
                     // Agregar el resto de las columnas como SubItems
                     item.SubItems.Add(fila["Nombre"].ToString());
                     item.SubItems.Add(fila["Descripcion"].ToString());
@@ -149,25 +149,74 @@ namespace pryPautasso
             }
             finally
             {
+                conexion.Close();
+            }
+        }
+        public void EliminarRegLv(ListView listView)
+        {
+            // Verificar que haya un ítem seleccionado
+            if (listView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione un registro para eliminar.");
+                return;
+            }
+
+            // Obtener el IdProducto del registro seleccionado (primer subitem del ListViewItem)
+            string idProducto = listView.SelectedItems[0].Text;
+
+            OleDbConnection conexion = null;
+            OleDbCommand comando = null;
+
+            try
+            {
+                // Confirmar antes de eliminar
+                DialogResult confirmResult = MessageBox.Show("¿Está seguro de que desea eliminar este registro?",
+                                                             "Confirmar eliminación",
+                                                             MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Inicializar la conexión
+                    conexion = new OleDbConnection(cadena);
+                    conexion.Open(); // Abrir la conexión
+
+                    // Crear el comando para eliminar el registro
+                    string consultaEliminar = "DELETE FROM Hoja 1 WHERE Id = @IdProducto";
+                    comando = new OleDbCommand(consultaEliminar, conexion);
+
+                    // Asignar el parámetro
+                    comando.Parameters.AddWithValue("@IdProducto", idProducto);
+
+                    // Ejecutar la consulta de eliminación
+                    int filasAfectadas = comando.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Registro eliminado correctamente.");
+
+                        // Actualizar el ListView llamando nuevamente a MostrarListView
+                        MostrarListView(listView);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar el registro.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Mostrar un mensaje de error si ocurre un problema
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
                 // Asegurarse de cerrar y liberar recursos
-
-                // Cerrar el adaptador si es necesario (aunque no requiere explícitamente un cierre)
-                if (dataAdapter != null)
-                {
-                    dataAdapter.Dispose();
-                }
-
-                // Cerrar el comando si es necesario
-                if (comando != null)
-                {
+               
                     comando.Dispose();
-                }
+                
 
-                // Cerrar la conexión
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                {
+                
                     conexion.Close();
-                }
+                
             }
         }
         public void Eliminar(int ID)    // 
@@ -178,7 +227,7 @@ namespace pryPautasso
                 comando = new OleDbCommand();
                 comando.Connection = conexion;
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "DELETE FROM ARTICULOS WHERE IDproducto = @ID";
+                comando.CommandText = "DELETE FROM Hoja 1 WHERE Id = @ID";
                 comando.Parameters.AddWithValue("@ID", ID);
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -201,12 +250,12 @@ namespace pryPautasso
                 comando = new OleDbCommand();
                 comando.Connection = conexion;
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = $"UPDATE ARTICULOS SET Nombre='{nombre}', " +
-                    $"Descripcion='{descripcion}'," +
+                comando.CommandText = $"UPDATE Hoja 1 SET Nombre='{nombre}', " +
+                    $"Descripción='{descripcion}'," +
                     $" Precio={precio}, " +
                     $"Stock={stock}, " +
-                    $"Categoria='{categoria}' " +
-                    $"WHERE IDproducto = {id}";
+                    $"Categoría='{categoria}' " +
+                    $"WHERE Id = {id}";
 
                 conexion.Open();
                 comando.ExecuteNonQuery();

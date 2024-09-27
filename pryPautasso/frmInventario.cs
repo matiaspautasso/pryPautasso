@@ -20,8 +20,8 @@ namespace pryPautasso
         clsConexion clsConexion = new clsConexion();
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-           // clsConexion.VerificarConexion();
+           // clsConexion.MostrarGrilla(dgvMostrar);
+            clsConexion.VerificarConexion();
         }
 
         private void button1_Click(object sender, EventArgs e) //btnInsertar
