@@ -20,22 +20,21 @@ namespace pryPautasso
         clsConexion clsConexion = new clsConexion();
         private void Form1_Load(object sender, EventArgs e)
         {
-            sadfas sadfas = new sadfas();
-            sadfas.Show();
+            
            // clsConexion.VerificarConexion();
         }
 
         private void button1_Click(object sender, EventArgs e) //btnInsertar
         {
             //btn insertar este boton no sirve corregir
-            int ID=int.Parse(txtID.Text);
+          
             string nombre = txtNombre.Text;
             string descripcion = txtDescripcion.Text;
-            string categoria = txtCategoria.Text;
+            string categoria = cboCategoria.Text;
             decimal precio = decimal.Parse(txtPrecio.Text);
             int stock = int.Parse(txtStock.Text);
 
-            clsConexion.insertar(ID,nombre, descripcion, precio, stock, categoria);
+            clsConexion.insertar(nombre, descripcion, precio, stock, categoria);
             clsConexion.MostrarGrilla(dgvMostrar);
             Limpiar();
         }
@@ -45,20 +44,19 @@ namespace pryPautasso
             txtDescripcion.Text = "";
             txtPrecio.Text = "";
             txtStock.Text = "";
-            txtCategoria.Text = "";
+            cboCategoria.Text = "";
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            int ID =int.Parse(txtID.Text);
-            clsConexion.Eliminar(ID);
-            clsConexion.MostrarGrilla(dgvMostrar);
+            frmEliminar frmEliminar = new frmEliminar();    
+            frmEliminar.ShowDialog();   
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             string nombre = txtNombre.Text;
             string descripcion = txtDescripcion.Text;
-            string categoria = txtCategoria.Text;
+            string categoria = cboCategoria.Text;
             decimal precio = decimal.Parse(txtPrecio.Text);
             int stock = int.Parse(txtStock.Text);
             int id = int.Parse(txtID.Text);

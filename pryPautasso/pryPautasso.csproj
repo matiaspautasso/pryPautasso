@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBAStoreDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmEliminar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEliminar.Designer.cs">
+      <DependentUpon>frmEliminar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,12 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sadfas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sadfas.Designer.cs">
-      <DependentUpon>sadfas.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="frmEliminar.resx">
+      <DependentUpon>frmEliminar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInventario.resx">
       <DependentUpon>frmInventario.cs</DependentUpon>
     </EmbeddedResource>
@@ -78,9 +81,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="sadfas.resx">
-      <DependentUpon>sadfas.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="DBAStoreDataSet.xsc">
       <DependentUpon>DBAStoreDataSet.xsd</DependentUpon>
     </None>
@@ -106,7 +106,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="carpeta1\DBAStore.accdb">
+    <Content Include="BaseDatos\DBAStore.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

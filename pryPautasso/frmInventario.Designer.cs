@@ -37,13 +37,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtStock = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.dgvMostrar = new System.Windows.Forms.DataGridView();
             this.btnInsertar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cboCategoria = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,13 +125,6 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "categoria";
             // 
-            // txtCategoria
-            // 
-            this.txtCategoria.Location = new System.Drawing.Point(119, 384);
-            this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(99, 20);
-            this.txtCategoria.TabIndex = 8;
-            // 
             // dgvMostrar
             // 
             this.dgvMostrar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -190,11 +183,24 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "ID";
             // 
+            // cboCategoria
+            // 
+            this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Items.AddRange(new object[] {
+            "electronica",
+            "software",
+            "componentes de pc"});
+            this.cboCategoria.Location = new System.Drawing.Point(119, 388);
+            this.cboCategoria.Name = "cboCategoria";
+            this.cboCategoria.Size = new System.Drawing.Size(99, 21);
+            this.cboCategoria.TabIndex = 16;
+            // 
             // frmInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 516);
+            this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnActualizar);
@@ -202,7 +208,6 @@
             this.Controls.Add(this.btnInsertar);
             this.Controls.Add(this.dgvMostrar);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label3);
@@ -231,13 +236,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.DataGridView dgvMostrar;
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboCategoria;
     }
 }
 

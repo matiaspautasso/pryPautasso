@@ -44,7 +44,7 @@ namespace pryPautasso
             return resultado;   
         }
 
-        public void insertar(int ID,string nombre, string descripcion, 
+        public void insertar(string nombre, string descripcion, 
             decimal precio, int stock, string categoria)
 
         {
@@ -54,9 +54,9 @@ namespace pryPautasso
                 comando=new OleDbCommand();
                 comando.Connection = conexion;  
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "INSERT INTO ARTICULOS (IDproducto,Nombre, Descripcion, Precio, Stock, Categoria) " +
-                             "VALUES (@ID,@nombre, @descripcion, @precio, @stock, @categoria)";
-                comando.Parameters.AddWithValue("@ID", ID);
+                comando.CommandText = "INSERT INTO ARTICULOS (Nombre, Descripcion, Precio, Stock, Categoria) " +
+                             "VALUES (@nombre, @descripcion, @precio, @stock, @categoria)";
+            
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@descripcion", descripcion);
                 comando.Parameters.AddWithValue("@precio", precio);
@@ -98,6 +98,76 @@ namespace pryPautasso
             finally
             {
                 conexion.Close();
+            }
+        }
+        public void MostrarListView(ListView listView)
+        {
+            OleDbConnection conexion = null;
+            OleDbCommand comando = null;
+            OleDbDataAdapter dataAdapter = null;
+
+            try
+            {
+                // Inicializar la conexión
+                conexion = new OleDbConnection(cadena);
+                conexion.Open(); // Abrir la conexión
+
+                // Crear el comando para la consulta SQL
+                comando = new OleDbCommand("SELECT * FROM ARTICULOS", conexion);
+
+                // Crear un DataTable para almacenar los datos
+                DataTable TABLA = new DataTable();
+
+                // Usar un OleDbDataAdapter para llenar el DataTable
+                dataAdapter = new OleDbDataAdapter(comando);
+                dataAdapter.Fill(TABLA);
+
+                // Limpiar el ListView antes de cargar nuevos datos
+                listView.Items.Clear();
+
+                // Iterar sobre cada fila del DataTable y agregarla al ListView
+                foreach (DataRow fila in TABLA.Rows)
+                {
+                    // Crear un ListViewItem con la primera columna (IdProducto)
+                    ListViewItem item = new ListViewItem(fila["IdProducto"].ToString());
+
+                    // Agregar el resto de las columnas como SubItems
+                    item.SubItems.Add(fila["Nombre"].ToString());
+                    item.SubItems.Add(fila["Descripcion"].ToString());
+                    item.SubItems.Add(fila["Precio"].ToString());
+                    item.SubItems.Add(fila["Stock"].ToString());
+                    item.SubItems.Add(fila["Categoria"].ToString());
+
+                    // Agregar el item al ListView
+                    listView.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Mostrar un mensaje de error si algo sale mal
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Asegurarse de cerrar y liberar recursos
+
+                // Cerrar el adaptador si es necesario (aunque no requiere explícitamente un cierre)
+                if (dataAdapter != null)
+                {
+                    dataAdapter.Dispose();
+                }
+
+                // Cerrar el comando si es necesario
+                if (comando != null)
+                {
+                    comando.Dispose();
+                }
+
+                // Cerrar la conexión
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
         }
         public void Eliminar(int ID)    // 
